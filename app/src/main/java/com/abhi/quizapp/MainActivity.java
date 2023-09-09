@@ -59,11 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button clickedButton=(Button) v;
         if(clickedButton.getId()==R.id.submit_btn){
-            currentQuestionIndex++;
-            loadNweQuestion();
+
             if(selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
                 score++;
             }
+            currentQuestionIndex++;
+            loadNweQuestion();
         }
         else {
             selectedAnswer=clickedButton.getText().toString();
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          new AlertDialog.Builder(this)
                  .setTitle(passstatus)
                  .setMessage("score is"+score+"out of"+totalQuestions)
-
+                 .setPositiveButton("Restart",(dialog, which) -> restartQuiz())
                  .setCancelable(false)
                  .show();
      }
